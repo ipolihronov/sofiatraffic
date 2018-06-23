@@ -36,6 +36,9 @@ def extractAllStops():
         stops.append(Stop(stop['properties']['code'], stop['properties']['name'], stop['id']))
 
 def schedule(code):
+
+    vehicle.clear()
+
     for s in stops:
         if code == s.code:
             x = s.id
