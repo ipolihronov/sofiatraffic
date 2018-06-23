@@ -2,8 +2,13 @@
 import requests
 import json
 import urllib.request
+import os.path
+import hashlib
+import datetime
+
 stops = []
 vehicle = []
+jsonCheckSum = "70801021f8accbc026e3f2be36696b0a"
 
 class Stop():
     def __init__(self, code, name, id):
@@ -17,11 +22,14 @@ class Vechile():
         self.number = number
         self.time = []
 
+def downloadJson():
+    rAllStop = (requests.get('https://www.sofiatraffic.bg/interactivecard/stops/geo?bbox=25,51,27,53,EPSG:3857,EPSG:3857')).json()
+    with open('stopsCache.json', 'w') as jsonFile:
+        json.dump(rAllStop, jsonFile)
+
 def extractAllStops():
-    # rAllStop = requests.get('https://www.sofiatraffic.bg/interactivecard/stops/geo?bbox=25,51,27,53,EPSG:3857,EPSG:3857')
-    # allData = rAllStop.json()
-    # with open('stopsCache.json', 'w') as outfile:
-    #     json.dump(allData, outfile)
+    if not os.path.exists('./stopsCache.json'):
+        downloadJson()
 
     with open('stopsCache.json') as f:
         data = json.load(f)
