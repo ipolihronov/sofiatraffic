@@ -15,7 +15,7 @@ class Vechile():
     def __init__(self, type, number):
         self.type = type
         self.number = number
-    time = []
+        self.time = []
 
 def extractAllStops():
     # rAllStop = requests.get('https://www.sofiatraffic.bg/interactivecard/stops/geo?bbox=25,51,27,53,EPSG:3857,EPSG:3857')
@@ -44,10 +44,11 @@ def schedule(code):
         lineIndex += 1
         for z in line['cars']:
             departureTime = z['departure_time']
+            vehicle[lineIndex - 1].time.append(departureTime)
             print(departureTime)
 
-extractAllStops()
-schedule(879)
-
+# extractAllStops()
+# schedule(31)
+#
 # for v in vehicle:
 #     print(v.type, v.number, v.time)
