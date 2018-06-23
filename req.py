@@ -8,7 +8,6 @@ import datetime
 
 stops = []
 vehicle = []
-jsonCheckSum = "70801021f8accbc026e3f2be36696b0a"
 
 class Stop():
     def __init__(self, code, name, id):
