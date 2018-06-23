@@ -5,7 +5,7 @@
     <title>Градски транспорт София</title>
 </head>
 <body>
-    <p> Резултат </p>
+    <p> Разписание за спирка {{ stopName}} </p>
     {% for v in vehicle %}
     <p> {{ v.type }} {{ v.number }} пристига в: {{ v.time }}</p>
     {% endfor %}

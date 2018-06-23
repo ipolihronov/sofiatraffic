@@ -8,6 +8,7 @@ import datetime
 
 stops = []
 vehicle = []
+stopName = ""
 
 class Stop():
     def __init__(self, code, name, id):
@@ -20,6 +21,8 @@ class Vechile():
         self.type = type
         self.number = number
         self.time = []
+
+
 
 def downloadJson():
     rAllStop = (requests.get('https://www.sofiatraffic.bg/interactivecard/stops/geo?bbox=25,51,27,53,EPSG:3857,EPSG:3857')).json()
@@ -38,10 +41,11 @@ def extractAllStops():
 def schedule(code):
 
     vehicle.clear()
-
     for s in stops:
         if code == s.code:
             x = s.id
+            stopName = s.name
+
 
     step = {'stop_id' : x}
     rStop = requests.get('https://www.sofiatraffic.bg/interactivecard/virtual_panel?', params=step)
@@ -56,7 +60,7 @@ def schedule(code):
             departureTime = z['departure_time']
             vehicle[lineIndex - 1].time.append(departureTime)
             print(departureTime)
-
+    print(stopName)
 # extractAllStops()
 # schedule(31)
 #

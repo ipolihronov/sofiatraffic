@@ -4,7 +4,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from req import schedule, extractAllStops
-from req import vehicle
+from req import vehicle, stopName
 
 # create app
 app = Flask(__name__)
@@ -34,7 +34,8 @@ def index():
             schedule(result)
         except:
             return render_template('problem.html')
-        return render_template('index.html', vehicle = vehicle)
+        print(stopName)
+        return render_template('index.html', vehicle = vehicle, stopName = stopName)
 
 
 # run app
