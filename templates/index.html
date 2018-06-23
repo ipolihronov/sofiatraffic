@@ -6,6 +6,8 @@
 </head>
 <body>
     <p> Резултат </p>
-    <p> {{ type }} {{ number }} {{ time }}</p>
+    {% for v in vehicle %}
+    <p> {{ v.type }} {{ v.number }} пристига в: {{ v.time }}</p>
+    {% endfor %}
 </body>
 </html>
